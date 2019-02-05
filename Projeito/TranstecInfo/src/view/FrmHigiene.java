@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import model.Alimento;
 import model.Higiene;
 
 /**
@@ -286,7 +287,53 @@ public class FrmHigiene extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+       String nome = txtNome.getText();
+        String qtd = txtQuantidade.getText();
+        String descricao = txtDescricao.getText();
+        if (!qtd.isEmpty()) {
+            double quantidade = Double.valueOf(qtd);
+        }
+        if (!qtd.isEmpty()) {
+            double maximo = Double.valueOf(qtd);
+        }
+        if (!qtd.isEmpty()) {
+            double medio = Double.valueOf(qtd);
+        }
+        if (!qtd.isEmpty()) {
+            double minimo = Double.valueOf(qtd);
+        }
+
+        if (rbBoa.isSelected()) {
+            higiene.setSituacao("b");
+        } else {
+            if (rbOtima.isSelected()) {
+                higiene.setSituacao("O"); 
+            } else if (rbRuim.isSelected()) {
+                higiene.setSituacao("r");
+            }
+
+            if (nome.isEmpty() | qtd.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nome e Quantidade são obrigatórios!");
+            } else {
+                boolean nova = false;
+                if (higiene == null) {
+                    nova = true;
+                    higiene = new Higiene();
+                }
+                higiene.setNome(nome);
+                higiene.setCodigo(0);
+                if (nova) {
+                    HigieneDAO.inserir(higiene);
+                } else {
+                    HigieneDAO.editar(higiene);
+                    telaListHigiene.carregarTabela();
+                    this.dispose();
+                }
+
+                higiene.setNome(nome);
+                higiene.setCodigo(0);
+            }
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

@@ -49,7 +49,7 @@ public class FrmAlimento extends javax.swing.JInternalFrame {
         txtMaximo.setText(String.valueOf(alimento.getMaximo()));
         txtMedio.setText(String.valueOf(alimento.getMedio()));
         txtMinimo.setText(String.valueOf(alimento.getMinimo()));
-        
+
         if (alimento.getSituacao().equals(alimento.RUIM)) {
             rbRuim.setSelected(true);
         }
@@ -60,9 +60,10 @@ public class FrmAlimento extends javax.swing.JInternalFrame {
         if (alimento.getSituacao().equals(alimento.OTIMA)) {
             rbOtima.setSelected(true);
         }
-        
+
     }
-        @SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -132,7 +133,7 @@ public class FrmAlimento extends javax.swing.JInternalFrame {
         jLabel12.setText("Valores:");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Mínimo:");
+        jLabel13.setText("Bom:");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Médio:");
@@ -269,7 +270,6 @@ public class FrmAlimento extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
 
     private void limparFormulario() {
         txtNome.setText("");
@@ -285,114 +285,63 @@ public class FrmAlimento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       String nome = txtNome.getText();
-       String cpf = txtDescricao.getText();
-            
-          
-            cliente.setNome( txtNome.getText() );
-            cliente.setTelefone(txtTelefone.getText());
-            cliente.setCpf(cpf);
-
-            String salario = txtSalario.getText();
-            if (!salario.isEmpty()) {
-                salario = salario.replace(",", ".");
-                cliente.setSalario(Double.valueOf(salario));
-            } else {
-                cliente.setSalario(0);
-            }
-
-            if (rbBoa.isSelected()) {
-                alimento.setSituacao("b");
-            } else if (rbOtima.isSelected()) {
-                alimento.setSituacao("o");
-            } else {
-                alimento.setSituString nome = txtNome.getText();
-        String cpf = txtCPF.getText();
-        Cidade cidade = (Cidade) cmbCidade.getSelectedItem();
-        boolean cpfOk = true;
-        try {
-            String ultimoNumero = cpf.substring(13);
-            Integer.valueOf(ultimoNumero);
-
-        } catch (Exception e) {
-            cpfOk = false;
+        String nome = txtNome.getText();
+        String qtd = txtQuantidade.getText();
+        String descricao = txtDescricao.getText();
+        String max = txtMaximo.getText();
+        String min = txtMinimo.getText();
+        String med = txtMedio.getText();
+        
+        if (!qtd.isEmpty()) {
+            double quantidade = Double.valueOf(qtd);
+        }
+        if (!qtd.isEmpty()) {
+            double maximo = Double.valueOf(qtd);
+        }
+        if (!qtd.isEmpty()) {
+            double medio = Double.valueOf(qtd);
+        }
+        if (!qtd.isEmpty()) {
+            double minimo = Double.valueOf(qtd);
         }
 
-        if (nome.isEmpty() || !cpfOk || cidade.getCodigo() == 0) {
-            JOptionPane.showMessageDialog(this, "Os campos Nome, CPF e Cidade são obrigatórios");
+        if (rbBoa.isSelected()) {
+            alimento.setSituacao("b");
         } else {
-            
-            boolean novo = false;
-            if(cliente == null){
-                cliente = new Cliente();
-                novo = true;
+            if (rbOtima.isSelected()) {
+                alimento.setSituacao("O"); 
+            } else if (rbRuim.isSelected()) {
+                alimento.setSituacao("r");
             }
-            
-          
-            cliente.setNome( txtNome.getText() );
-            cliente.setTelefone(txtTelefone.getText());
-            cliente.setCpf(cpf);
 
-            String salario = txtSalario.getText();
-            if (!salario.isEmpty()) {
-                salario = salario.replace(",", ".");
-                cliente.setSalario(Double.valueOf(salario));
+            if (nome.isEmpty() | qtd.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nome e Quantidade são obrigatórios!");
             } else {
-                cliente.setSalario(0);
+                boolean nova = false;
+                if (alimento == null) {
+                    nova = true;
+                    alimento = new Alimento();
+                }
+                alimento.setNome(nome);
+                alimento.setCodigo(0);
+                if (nova) {
+                    AlimentoDAO.inserir(alimento);
+                } else {
+                    AlimentoDAO.editar(alimento);
+                    telaListAlimento.carregarTabela();
+                    this.dispose();
+                }
+
+                alimento.setNome(nome);
+                alimento.setCodigo(0);
+                alimento.setDescricao(descricao);
+                alimento.setQuantidade(quantidade);
+                alimento.setMaximo(max);
+                alimento.setMedio(med);
+                alimento.setMinimo(min);
+                alimento.setSituacao(situacao);
             }
-
-            cliente.setTemfilhos(cbTemFilhos.isSelected());
-            cliente.setCasado(cbCasados.isSelected());
-
-            if (rbFeminino.isSelected()) {
-                cliente.setSexo("f");
-            } else if (rbMasculino.isSelected()) {
-                cliente.setSexo("m");
-            } else {
-                cliente.setSexo("");
-            }
-
-            String data = txtNascimento.getText();
-            int dia = Integer.valueOf(data.substring(0, 2));
-            int mes = Integer.valueOf(data.substring(3, 5)) - 1;
-            int ano = Integer.valueOf(data.substring(6));
-            Calendar nascimento = Calendar.getInstance();
-            nascimento.set(ano, mes, dia);
-            cliente.setNascimento(nascimento);
-            cliente.setCidade(cidade);
-            
-            if(novo){
-              ClienteDAO.inserir(cliente);
-              limparFoemulario();
-        }else{
-              ClienteDAO.editar(cliente);
-              telaListClientes.carregarTabela();
-              this.dispose();
-              
-        }("");
-            }
-
-            String data = txtNascimento.getText();
-            int dia = Integer.valueOf(data.substring(0, 2));
-            int mes = Integer.valueOf(data.substring(3, 5)) - 1;
-            int ano = Integer.valueOf(data.substring(6));
-            Calendar nascimento = Calendar.getInstance();
-            nascimento.set(ano, mes, dia);
-            cliente.setNascimento(nascimento);
-            cliente.setCidade(cidade);
-            
-            if(novo){
-              ClienteDAO.inserir(cliente);
-              limparFoemulario();
-        }else{
-              ClienteDAO.editar(cliente);
-              telaListClientes.carregarTabela();
-              this.dispose();
-              
         }
-       
-
-
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
