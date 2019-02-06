@@ -304,34 +304,34 @@ public class FrmVestuario extends javax.swing.JInternalFrame {
         }
 
         if (rbBoa.isSelected()) {
-            alimento.setSituacao("b");
+            vestuario.setSituacao("b");
         } else {
             if (rbOtima.isSelected()) {
-                alimento.setSituacao("O"); 
+                vestuario.setSituacao("O"); 
             } else if (rbRuim.isSelected()) {
-                alimento.setSituacao("r");
+                vestuario.setSituacao("r");
             }
 
             if (nome.isEmpty() | qtd.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Nome e Quantidade são obrigatórios!");
             } else {
                 boolean nova = false;
-                if (alimento == null) {
+                if (vestuario== null) {
                     nova = true;
-                    alimento = new Alimento();
+                    vestuario = new Vestuario();
                 }
-                alimento.setNome(nome);
-                alimento.setCodigo(0);
+                vestuario.setNome(nome);
+                vestuario.setCodigo(0);
                 if (nova) {
-                    AlimentoDAO.inserir(alimento);
+                    VestuarioDAO.inserir(vestuario);
                 } else {
-                    AlimentoDAO.editar(alimento);
-                    telaListAlimento.carregarTabela();
+                    VestuarioDAO.editar(vestuario);
+                    telaListVestuario.carregarTabela();
                     this.dispose();
                 }
 
-                alimento.setNome(nome);
-                alimento.setCodigo(0);
+                vestuario.setNome(nome);
+                vestuario.setCodigo(0);
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed

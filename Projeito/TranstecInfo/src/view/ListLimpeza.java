@@ -5,13 +5,12 @@
  */
 package view;
 
-import dao.AlimentoDAO;
+
 import dao.LimpezaDAO;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Alimento;
 import model.Limpeza;
 
 /**
@@ -28,21 +27,21 @@ public class ListLimpeza extends javax.swing.JInternalFrame {
     }
     
     public void carregarTabela(){
-        List<Alimento> lista = AlimentoDAO.getALimentos();
+        List<Limpeza> lista = LimpezaDAO.getLimpezas();
         DefaultTableModel model = new DefaultTableModel();
-        String[] colunas = {"Código" , "Nome da Cidade", "Estado"};
+        String[] colunas = {"Código" , "Nome da item", "Descrição", "Quantidade", "Situação"};
         model.setColumnIdentifiers(colunas);
         
-        for (Alimento ali : lista) {
+        for (Limpeza lim : lista) {
             Object[] linha = {
-                ali.getCodigo(),
-                ali.getNome(),
-                ali.getDescricao(),
-                ali.getQuantidade(),
-                ali.getSituacao(),
-                ali.getMinimo(),
-                ali.getMedio(),
-                ali.getMaximo()
+                lim.getCodigo(),
+                lim.getNome(),
+                lim.getDescricao(),
+                lim.getQuantidade(),
+                lim.getSituacao(),
+                lim.getMinimo(),
+                lim.getMedio(),
+                lim.getMaximo()
             };
             model.addRow( linha );
         }

@@ -306,34 +306,34 @@ public class FrmLimpeza extends javax.swing.JInternalFrame {
         }
 
         if (rbBoa.isSelected()) {
-            alimento.setSituacao("b");
+            limpeza.setSituacao("b");
         } else {
             if (rbOtima.isSelected()) {
-                alimento.setSituacao("O"); 
+                limpeza.setSituacao("O"); 
             } else if (rbRuim.isSelected()) {
-                alimento.setSituacao("r");
+                limpeza.setSituacao("r");
             }
 
             if (nome.isEmpty() | qtd.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Nome e Quantidade são obrigatórios!");
             } else {
                 boolean nova = false;
-                if (alimento == null) {
+                if (limpeza == null) {
                     nova = true;
-                    alimento = new Alimento();
+                    limpeza = new Limpeza();
                 }
-                alimento.setNome(nome);
-                alimento.setCodigo(0);
+                limpeza.setNome(nome);
+                limpeza.setCodigo(0);
                 if (nova) {
-                    AlimentoDAO.inserir(alimento);
+                    LimpezaDAO.inserir(limpeza);
                 } else {
-                    AlimentoDAO.editar(alimento);
-                    telaListAlimento.carregarTabela();
+                    LimpezaDAO.editar(limpeza);
+                    telaListLimpeza.carregarTabela();
                     this.dispose();
                 }
 
-                alimento.setNome(nome);
-                alimento.setCodigo(0);
+                limpeza.setNome(nome);
+                limpeza.setCodigo(0);
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed

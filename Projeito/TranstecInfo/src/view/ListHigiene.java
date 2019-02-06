@@ -29,7 +29,7 @@ public class ListHigiene extends javax.swing.JInternalFrame {
     public void carregarTabela(){
         List<Higiene> lista = HigieneDAO.getHigienes();
         DefaultTableModel model = new DefaultTableModel();
-        String[] colunas = {"Código" , "Nome da Cidade", "Estado"};
+        String[] colunas = {"Código" , "Nome da item", "Descrição", "Quantidade", "Situação"};
         model.setColumnIdentifiers(colunas);
         
         for (Higiene hig : lista) {
@@ -139,7 +139,7 @@ public class ListHigiene extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int linha = tableHigiene.getSelectedRow();
         if (linha<0) {
-            JOptionPane.showMessageDialog(this, "Você deve selecionar umitemj!");       
+            JOptionPane.showMessageDialog(this, "Você deve selecionar um item!");       
         }else{
             int codigo = (int) tableHigiene.getValueAt(linha, 0);
             FrmHigiene tela = new FrmHigiene(codigo,this );

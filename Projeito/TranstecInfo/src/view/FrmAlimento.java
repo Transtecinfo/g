@@ -291,17 +291,18 @@ public class FrmAlimento extends javax.swing.JInternalFrame {
         String max = txtMaximo.getText();
         String min = txtMinimo.getText();
         String med = txtMedio.getText();
+ 
         
         if (!qtd.isEmpty()) {
             double quantidade = Double.valueOf(qtd);
         }
-        if (!qtd.isEmpty()) {
+        if (!max.isEmpty()) {
             double maximo = Double.valueOf(qtd);
         }
-        if (!qtd.isEmpty()) {
+        if (!med.isEmpty()) {
             double medio = Double.valueOf(qtd);
         }
-        if (!qtd.isEmpty()) {
+        if (!min.isEmpty()) {
             double minimo = Double.valueOf(qtd);
         }
 
@@ -332,14 +333,6 @@ public class FrmAlimento extends javax.swing.JInternalFrame {
                     this.dispose();
                 }
 
-                alimento.setNome(nome);
-                alimento.setCodigo(0);
-                alimento.setDescricao(descricao);
-                alimento.setQuantidade(quantidade);
-                alimento.setMaximo(max);
-                alimento.setMedio(med);
-                alimento.setMinimo(min);
-                alimento.setSituacao(situacao);
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed

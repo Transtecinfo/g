@@ -9,15 +9,20 @@ package model;
  *
  * @author 181720019
  */
-public class Login {
+public class Usuario {
     
     private int codigo;
-    private String nome, senha;
+    private String nome, login, senha;
     
-     public Login(int codigo, String nome, String senha){
+    public Usuario(){
+        
+    }
+    
+     public Usuario(int codigo, String nome,String login, String senha){
         this.codigo = codigo;
         this.nome = nome;
        this.senha = senha;
+       this.login = login;
     }
 
     public int getCodigo() {
@@ -43,6 +48,15 @@ public class Login {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    
     
      
 }

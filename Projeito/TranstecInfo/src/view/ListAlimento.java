@@ -28,7 +28,7 @@ public class ListAlimento extends javax.swing.JInternalFrame {
     public void carregarTabela(){
         List<Alimento> lista = AlimentoDAO.getALimentos();
         DefaultTableModel model = new DefaultTableModel();
-        String[] colunas = {"Código" , "Nome da Cidade", "Estado"};
+        String[] colunas = {"Código" , "Nome da item", "Descrição", "Quantidade", "Situação"};
         model.setColumnIdentifiers(colunas);
         
         for (Alimento ali : lista) {

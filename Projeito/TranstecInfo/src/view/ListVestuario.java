@@ -29,7 +29,7 @@ public class ListVestuario extends javax.swing.JInternalFrame {
     public void carregarTabela(){
         List<Vestuario> lista = VestuarioDAO.getVestuarios();
         DefaultTableModel model = new DefaultTableModel();
-        String[] colunas = {"Código" , "Nome da Cidade", "Estado"};
+        String[] colunas = {"Código" , "Nome da item", "Descrição", "Quantidade", "Situação"};
         model.setColumnIdentifiers(colunas);
         
         for (Vestuario vest : lista) {
